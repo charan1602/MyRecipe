@@ -10,9 +10,13 @@ async function check(recipes) {
     for(let i =0 ;i<matches.length; i++){
         let card = document.createElement("div")
         card.setAttribute("class","card_items")
+        let imgurl=matches[i].recipe.image
         card.innerHTML=`
-        <div>
-       <h1> ${matches[i].recipe.calories}</h1>
+        <div id="image">
+        <img src="${imgurl}"  alt="funcking wait"> 
+        </div>
+        <div id="calories">
+       <h4><strong>Calories:-</strong>${matches[i].recipe.calories.toFixed(3)}</h4>
         </div>
         `
         card_container.appendChild(card)

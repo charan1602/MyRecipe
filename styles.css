@@ -9,6 +9,11 @@
     font-size: 100px;
     font-family: 'Satisfy', cursive;
 }
+#card_container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+}
 #search_cnt{
     display: flex;
     justify-content: center;
@@ -53,5 +58,26 @@
 @media(max-width:550px){
     #search_input{
         width: 200px;
+    }
+}
+.card_items{
+    box-shadow: 10px 10px 5px grey;
+    /* border: 1px solid black; */
+    width: 350px;
+    margin-top: 20px;
+
+}
+.card_items:hover{
+    transform: scale(1.05);
+}
+#image{
+    display: flex;
+    justify-content: center;
+}
+@media(max-width:1000){
+    #card_container{
+        display:grid;
+        grid-template-columns: auto auto ;
+        /* justify-content: space-evenly; */
     }
 }
