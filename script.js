@@ -7,20 +7,32 @@ async function check(recipes) {
       let matches = data.hits
       console.log(matches) 
     console.log(matches[0].recipe.calories)
+    card_container.innerHTML=""
     for(let i =0 ;i<matches.length; i++){
         let card = document.createElement("div")
         card.setAttribute("class","card_items")
         let imgurl=matches[i].recipe.image
         card.innerHTML=`
-        <div id="image">
-        <img src="${imgurl}"  alt="funcking wait"> 
+        <div class="image">
+        <img src="${imgurl}"  alt="fucking wait"> 
         </div>
-        <div id="calories">
-       <h4><strong>Calories:-</strong>${matches[i].recipe.calories.toFixed(3)}</h4>
+        <div class="calories">
+        <h2 class="heading">${matches[i].recipe.label}</h2>
+        <h4 class="details"><strong >Calories:-</strong>${matches[i].recipe.calories.toFixed(3)}</h4>
+        <h4 class="details"><strong >CuisineType:-</strong>${matches[i].recipe.cuisineType[0]}</h4>
+        </div>
+        <div class="icon"><i class="fas fa-heart"></div>
+        <div class="buttons">
+         <button id="instructions">Instructions</button>
+         <button id="ingredients">Ingredients</button>
         </div>
         `
         card_container.appendChild(card)
     }
+    let instructions = getElementById("instructions")
+    instructions.addEventListener("click",()=>{
+        window.location.href="$"
+    })
 }
 
    
