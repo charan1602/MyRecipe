@@ -11,6 +11,7 @@ async function check(recipes) {
     for(let i =0 ;i<matches.length; i++){
         let card = document.createElement("div")
         card.setAttribute("class","card_items")
+        card.setAttribute("data-value",`${i}`)
         let imgurl=matches[i].recipe.image
         card.innerHTML=`
         <div class="image">
@@ -21,18 +22,41 @@ async function check(recipes) {
         <h4 class="details"><strong >Calories:-</strong>${matches[i].recipe.calories.toFixed(3)}</h4>
         <h4 class="details"><strong >CuisineType:-</strong>${matches[i].recipe.cuisineType[0]}</h4>
         </div>
-        <div class="icon"><i class="fas fa-heart"></div>
         <div class="buttons">
-         <button id="instructions">Instructions</button>
-         <button id="ingredients">Ingredients</button>
+         <button class="instructions">Instructions</button>
+         <button class="ingredients">Ingredients</button>
         </div>
         `
         card_container.appendChild(card)
     }
-    let instructions = getElementById("instructions")
-    instructions.addEventListener("click",()=>{
-        window.location.href="$"
-    })
+    // let heading = document.querySelectorAll(".heading")
+    // let 
+    // let h_value = heading.value
+    // console.log(h_value)
+    let instruction = document.querySelectorAll(".instructions")
+     instruction.forEach((button)=> {
+        button.addEventListener("click",function (){
+        let element =  this.parentElement
+        let data = element.parentElement
+        // console.log(data)
+        // console.log(this.heading)
+        // let h_value = data.querySelector("heading").innerText
+        let key = data.getAttribute("data-value")
+        // console.log(key)
+       let instruction_link = matches[key].recipe.url
+        window.location.href=`${instruction_link}`
+        })
+     });
+     let item = document.getElementsByClassName("main_cont")
+    let ingredient = document.querySelectorAll(".ingredients")
+      ingredient.forEach((button) => {
+        button.addEventListener("click",function (){
+               item.innerHTML=`
+               <p>gudisetti edhava</p>
+               `
+               window.location.href=""
+        })
+    });
 }
 
    
