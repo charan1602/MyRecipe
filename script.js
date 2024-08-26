@@ -15,7 +15,7 @@ async function check(recipes) {
         let imgurl=matches[i].recipe.image
         card.innerHTML=`
         <div class="image">
-        <img src="${imgurl}"  alt="fucking wait"> 
+        <img src="${imgurl}"  alt="wait"> 
         </div>
         <div class="calories">
         <h2 class="heading">${matches[i].recipe.label}</h2>
@@ -24,8 +24,8 @@ async function check(recipes) {
         </div>
         <div class="buttons">
          <button class="instructions">Instructions</button>
-         <button class="ingredients">Ingredients</button>
-        </div>
+         <a href="ingredients.html"><button class="ingredients">Ingredients</button></a>
+         </div>
         `
         card_container.appendChild(card)
     }
@@ -47,14 +47,16 @@ async function check(recipes) {
         window.location.href=`${instruction_link}`
         })
      });
-     let item = document.getElementsByClassName("main_cont")
+     let item = document.getElementById("main_cont")
     let ingredient = document.querySelectorAll(".ingredients")
       ingredient.forEach((button) => {
         button.addEventListener("click",function (){
-               item.innerHTML=`
+            let box = document.createElement("div")
+
+               box.innerHTML=`
                <p>gudisetti edhava</p>
                `
-               window.location.href="ingredients.html"
+            //    window.location.href="https://charan1602.github.io/MyRecipe/ingredients"
         })
     });
 }

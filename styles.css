@@ -112,15 +112,15 @@
     /* flex-grow: 1; */
     margin-bottom: 10px;
 }
-#instructions,#ingredients{
+.instructions,.ingredients{
     padding: 5px 40px 5px 40px;
 }
-#ingredients:hover{
+.ingredients:hover{
     transform: scale(1.03);
     background-color: rgb(75, 54, 107);
     color: aliceblue;
 }
-#instructions:hover{
+.instructions:hover{
     transform: scale(1.03);
     background-color: rgb(81, 49, 103);
     color: aliceblue;
