@@ -54,7 +54,7 @@ async function check(recipes) {
                item.innerHTML=`
                <p>gudisetti edhava</p>
                `
-               window.location.href=""
+               window.location.href="ingredients.html"
         })
     });
 }
