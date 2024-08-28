@@ -1,8 +1,14 @@
 let card_container = document.getElementById("card_container")
+let error = document.getElementById("error")
+let fav_page = document.getElementById("fav_page")
+let def = document.getElementById("default")
 let recipie_url = ("https://api.edamam.com/search?&app_id=58257113&app_key=a6a377d2cd0fefbdaf8c0cdec160df43&q=")
 async function check(recipes) {
-    let response = await fetch(recipie_url+recipes)
-    let data = await response.json()
+    try{
+        def.innerHTML=""
+        error.innerHTML=""
+        let response = await fetch(recipie_url+recipes)
+        let data = await response.json()
     // console.log(data)
       let matches = data.hits
       console.log(matches) 
@@ -24,8 +30,9 @@ async function check(recipes) {
         </div>
         <div class="buttons">
          <button class="instructions">Instructions</button>
-         <a href="ingredients.html"><button class="ingredients">Ingredients</button></a>
+         <button class="ingredients">Ingredients</button>
          </div>
+        <button class="favorites">Add to Favorites</button>
         `
         card_container.appendChild(card)
     }
@@ -47,30 +54,80 @@ async function check(recipes) {
         window.location.href=`${instruction_link}`
         })
      });
-     let item = document.getElementById("main_cont")
+     fav_page.addEventListener("click",()=>{
+            window.location.href="favorites.html"
+     })
+    // let item = document.getElementById("main_cont")
     let ingredient = document.querySelectorAll(".ingredients")
       ingredient.forEach((button) => {
-        button.addEventListener("click",function (){
-            let box = document.createElement("div")
+        button.addEventListener("click",function (e){
+            // console.log(button)
+            e.preventDefault()
+            
+            // let parent = this.parentElement
+            // let grandparent = parent.parentElement
+            // let key = grandparent.getAttribute("data-value")
+            // // console.log(key)
+            let slidein = document.getElementsByClassName("slide_in")
+            // console.log(slidein.innerHTML)
+            // slidein.style.display = "block"
+            // let slidein_div = document.createElement("div")
+            // slidein_div.innerHTML=`
+            // <h1>${matches[key].recipe.dishType}</h1>
 
-               box.innerHTML=`
-               <p>gudisetti edhava</p>
-               `
-            //    window.location.href="https://charan1602.github.io/MyRecipe/ingredients"
+            // `
+            // slidein.appendChild(slidein_div)
+
         })
     });
+    let favorite_array = []
+    let favorites = document.querySelectorAll(".favorites")
+    favorites.forEach((button)=>{
+        button.addEventListener("click",function(){
+            let parent = this.parentElement    
+            let key = parent.getAttribute("data-value")
+            // console.log(key)
+            let key_value = matches[key]
+            favorite_array.push(key_value)
+            // console.log(favorite_array)
+            // console.log(key_value)
+            // let unique_key = `${recipes}_${key}`
+            // console.log(unique_key)
+
+            localStorage.setItem("favorites",JSON.stringify(favorite_array))
+        //    let output = JSON.parse(localStorage.getItem("favorites")) 
+        //    console.log(output)
+        })
+    })
+
+    }
+    catch{
+        def.innerHTML=""
+        error_data = document.createElement("div")
+        error_data.setAttribute("id","error_div")
+        error.innerHTML=""
+        error_data.innerHTML=`
+        <h3>Something</h3>
+        <img src="img/th-removebg-preview.png" alt="Bootstrap" width="400" height="400">
+        <h3>Went wrong</h3>
+        `
+        error.appendChild(error_data)
+    }
+    
 }
 
    
 
-let searched_data = document.getElementById("search_input")
-let search_btn = document.getElementById("search")
-search_btn.addEventListener("click",(e)=>{
+
+    let searched_data = document.getElementById("search_input")
+    let search_btn = document.getElementById("search")
+    search_btn.addEventListener("click",(e)=>{
     e.preventDefault()
     // card()
     let ext_data = searched_data.value
     let x = check(ext_data)
 })
 
+// localStorage.clear()
 
 
