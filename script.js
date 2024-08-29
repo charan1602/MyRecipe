@@ -2,6 +2,8 @@ let card_container = document.getElementById("card_container")
 let error = document.getElementById("error")
 let fav_page = document.getElementById("fav_page")
 let def = document.getElementById("default")
+let got_array = []
+let favorites = document.querySelectorAll(".favorites")
 let recipie_url = ("https://api.edamam.com/search?&app_id=58257113&app_key=a6a377d2cd0fefbdaf8c0cdec160df43&q=")
 async function check(recipes) {
     try{
@@ -80,21 +82,23 @@ async function check(recipes) {
 
         })
     });
-    let favorite_array = []
+    
     let favorites = document.querySelectorAll(".favorites")
     favorites.forEach((button)=>{
         button.addEventListener("click",function(){
             let parent = this.parentElement    
             let key = parent.getAttribute("data-value")
             // console.log(key)
+            let got_array = JSON.parse(localStorage.getItem("favorites"))
+            console.log(got_array)
             let key_value = matches[key]
-            favorite_array.push(key_value)
+            got_array.push(key_value)
+            localStorage.setItem("favorites",JSON.stringify(got_array))
             // console.log(favorite_array)
             // console.log(key_value)
             // let unique_key = `${recipes}_${key}`
             // console.log(unique_key)
 
-            localStorage.setItem("favorites",JSON.stringify(favorite_array))
         //    let output = JSON.parse(localStorage.getItem("favorites")) 
         //    console.log(output)
         })

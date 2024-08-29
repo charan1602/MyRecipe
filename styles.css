@@ -204,8 +204,11 @@
     .head{
         font-size: 60px;
     }
-    
-
+}
+#fav_head h2{
+    font-display: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 
