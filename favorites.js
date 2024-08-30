@@ -23,6 +23,14 @@ for(let i =0 ;i<array_elements.length; i++){
      <button class="instructions">Instructions</button>
      <button class="ingredients">Ingredients</button>
      </div>
+     <button class="remove">Remove</button>
     `
     faV_div.appendChild(card)
 }
+let remove = document.querySelectorAll(".remove")
+remove.forEach((button)=>{
+    button.addEventListener("click",()=>{
+       parent = this.ParentElement
+       let key = array_elements.
+    })
+})

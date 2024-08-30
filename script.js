@@ -2,7 +2,9 @@ let card_container = document.getElementById("card_container")
 let error = document.getElementById("error")
 let fav_page = document.getElementById("fav_page")
 let def = document.getElementById("default")
-let got_array = []
+let popup = document.getElementById("popup")
+// console.log(popup)
+// let got_array = []
 let favorites = document.querySelectorAll(".favorites")
 let recipie_url = ("https://api.edamam.com/search?&app_id=58257113&app_key=a6a377d2cd0fefbdaf8c0cdec160df43&q=")
 async function check(recipes) {
@@ -32,9 +34,9 @@ async function check(recipes) {
         </div>
         <div class="buttons">
          <button class="instructions">Instructions</button>
-         <button class="ingredients">Ingredients</button>
+                  <button type="button" class="ingredients" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ingredients</button>
          </div>
-        <button class="favorites">Add to Favorites</button>
+         <button class="favorites">Add to Favorites</button>
         `
         card_container.appendChild(card)
     }
@@ -66,11 +68,22 @@ async function check(recipes) {
             // console.log(button)
             e.preventDefault()
             
-            // let parent = this.parentElement
-            // let grandparent = parent.parentElement
-            // let key = grandparent.getAttribute("data-value")
-            // // console.log(key)
-            let slidein = document.getElementsByClassName("slide_in")
+            let parent = this.parentElement
+            let grandparent = parent.parentElement
+            // console.log(grandparent)
+            let key = grandparent.getAttribute("data-value")
+            let count = matches[key].recipe.ingredients
+            console.log(count)
+            popup.innerHTML=""
+            // console.log(popup)
+            for(let i =0 ; i<count.length;i++){
+                popup.innerHTML+=`
+                   <div><strong>${count[i].food}:-</strong>${count[i].text}</div>
+                `
+            }
+           
+            // console.log(key)
+            // let slidein = document.getElementsByClassName("slide_in")
             // console.log(slidein.innerHTML)
             // slidein.style.display = "block"
             // let slidein_div = document.createElement("div")
@@ -89,8 +102,8 @@ async function check(recipes) {
             let parent = this.parentElement    
             let key = parent.getAttribute("data-value")
             // console.log(key)
-            let got_array = JSON.parse(localStorage.getItem("favorites"))
-            console.log(got_array)
+            let got_array = JSON.parse(localStorage.getItem("favorites")) || []
+            // console.log(got_array)
             let key_value = matches[key]
             got_array.push(key_value)
             localStorage.setItem("favorites",JSON.stringify(got_array))
@@ -106,10 +119,12 @@ async function check(recipes) {
 
     }
     catch{
+        // console.log(def)
+        card_container.innerHTML=""
         def.innerHTML=""
+        error.innerHTML=""
         error_data = document.createElement("div")
         error_data.setAttribute("id","error_div")
-        error.innerHTML=""
         error_data.innerHTML=`
         <h3>Something</h3>
         <img src="img/th-removebg-preview.png" alt="Bootstrap" width="400" height="400">
@@ -133,5 +148,3 @@ async function check(recipes) {
 })
 
 // localStorage.clear()
-
-
