@@ -149,6 +149,16 @@
     margin-left: 11px;
 
 }
+.remove{
+    background-color: rgb(112, 136, 169);
+    display: flex;
+    flex-grow: 1;
+    padding-left: 105px;
+    padding-right: 105px;
+    margin-bottom: 5px;
+    margin-left: 11px;
+
+}
 #error{
     display: flex;
     align-items: center;

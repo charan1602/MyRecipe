@@ -28,9 +28,16 @@ for(let i =0 ;i<array_elements.length; i++){
     faV_div.appendChild(card)
 }
 let remove = document.querySelectorAll(".remove")
+// console.log(remove)
 remove.forEach((button)=>{
     button.addEventListener("click",()=>{
-       parent = this.ParentElement
-       let key = array_elements.
+        let parent = button.parentElement
+        let key = parent.getAttribute("data-value")
+        console.log(array_elements.length)
+        array_elements.splice(key,1)
+        console.log(array_elements.length)
+        localStorage.setItem("favorites",JSON.stringify(array_elements))
+        // console.log(key)
+        location.reload()
     })
 })

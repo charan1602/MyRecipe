@@ -111,7 +111,7 @@ async function check(recipes) {
             // console.log(key_value)
             // let unique_key = `${recipes}_${key}`
             // console.log(unique_key)
-
+             button.disabled = "true"
         //    let output = JSON.parse(localStorage.getItem("favorites")) 
         //    console.log(output)
         })
