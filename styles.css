@@ -153,10 +153,10 @@
     background-color: rgb(112, 136, 169);
     display: flex;
     flex-grow: 1;
-    padding-left: 105px;
-    padding-right: 105px;
+    padding-left: 125px;
+    padding-right: 125px;
     margin-bottom: 5px;
-    margin-left: 11px;
+    margin-left: 23px;
 
 }
 #error{
@@ -215,11 +215,15 @@
         font-size: 60px;
     }
 }
-#fav_head h2{
-    font-display: auto;
+#fav_head {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
+#fav_head h2{
+    font-size: 50px;
+}
+
 #popup{
     display: flex;
     flex-direction: column;

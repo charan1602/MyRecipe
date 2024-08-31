@@ -103,15 +103,31 @@ async function check(recipes) {
             let key = parent.getAttribute("data-value")
             // console.log(key)
             let got_array = JSON.parse(localStorage.getItem("favorites")) || []
-            // console.log(got_array)
             let key_value = matches[key]
+            // console.log(got_array)
+            let present=0
+            for(let i=0;i<got_array.length;i++){            
+                    // console.log(got_array[i])
+                    console.log(key_value)
+                if(got_array[i].recipe.label == key_value.recipe.label)
+                 {
+                    present = present+1
+                 }             
+            }
+            console.log(present)
+           if(present !=1){
             got_array.push(key_value)
             localStorage.setItem("favorites",JSON.stringify(got_array))
+           }
+           else{
+            alert("This recepie is alredy added to favorites")
+             button.disabled = "true"
+           }
+           
             // console.log(favorite_array)
             // console.log(key_value)
             // let unique_key = `${recipes}_${key}`
             // console.log(unique_key)
-             button.disabled = "true"
         //    let output = JSON.parse(localStorage.getItem("favorites")) 
         //    console.log(output)
         })
